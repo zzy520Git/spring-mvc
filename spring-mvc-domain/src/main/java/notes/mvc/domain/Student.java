@@ -2,6 +2,8 @@ package notes.mvc.domain;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * Description：
  *
@@ -12,6 +14,11 @@ import lombok.Data;
  */
 @Data
 public class Student {
+    private Long id;
     private Integer age;
     private String name;
+    private String username;
+    private String password;
+
+    private Date birthday;
 }
