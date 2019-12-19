@@ -11,5 +11,7 @@ import lombok.Data;
  * @since
  */
 @Data
-public class Stu {
+public class Student {
+    private Integer age;
+    private String name;
 }
