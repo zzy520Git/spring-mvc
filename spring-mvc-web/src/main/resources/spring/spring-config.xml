@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+  <context:component-scan base-package="notes.mvc">
+    <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+  </context:component-scan>
+
+  <!-- 启动@AspectJ支持,是否强制使用CGLIB代理：proxy-target-class为true即可,默认是false -->
+  <aop:aspectj-autoproxy proxy-target-class="false" expose-proxy="false"/>
+  <!-- 该注解主要用于激活Bean上的注解，注意必须已注册为Bean -->
+  <context:annotation-config/>
+
+  <!--加载配置文件-->
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>classpath:conf/important.properties</value>
+        <value>classpath:conf/project.properties</value>
+        <value>classpath:${environment}.properties</value>
+      </list>
+    </property>
+    <property name="fileEncoding" value="UTF-8"/>
+  </bean>
+
+  <!--引入Spring配置文件-->
+  <import resource="spring-config-dao.xml"/>
+  <import resource="spring-config-dispatcher.xml"/>
+
+  <!--
+  <import resource="spring-config-template.xml"/>
+  <import resource="spring-config-notes.xml"/>
+  -->
+
+</beans>
