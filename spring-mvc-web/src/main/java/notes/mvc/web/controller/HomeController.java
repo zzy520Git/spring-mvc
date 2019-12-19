@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/home")
 public class HomeController {
 
-    @RequestMapping("/")
+    @RequestMapping("/t")
     public Object home(HttpServletRequest request, HttpServletResponse response) {
         return "home";
     }
