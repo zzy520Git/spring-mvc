@@ -21,13 +21,28 @@
   <mvc:resources mapping="/assets/**" location="/assets/"/>
   -->
 
-  <!-- 请求默认域名，默认跳转url(view-name也可直接为视图名，如"func/jsonForm") -->
-  <!-- 注意，该配置生效必须webapp根目录没有index.html或index.jsp等 -->
-  <!-- 可改用RequestMapping("/") -->
-  <!--<mvc:view-controller path="/" view-name="redirect:/index"/>-->
-
-  <!-- 读取配置文件用于Controller中的属性注入 -->
-  <!--<context:property-placeholder location="classpath:conf/*.properties"/>-->
+  <!-- 拦截器 -->
+  <mvc:interceptors>
+    <!--多个拦截器,顺序执行 -->
+    <mvc:interceptor>
+      <!-- /**表示所有url包括子url路径 -->
+      <mvc:mapping path="/**"/>
+      <mvc:exclude-mapping path="/assets/**"/>
+      <mvc:exclude-mapping path="/css/**"/>
+      <mvc:exclude-mapping path="/js/**"/>
+      <bean class="notes.mvc.web.interceptor.LoginInterceptor"/>
+    </mvc:interceptor>
+    <mvc:interceptor>
+      <mvc:mapping path="/**"/>
+      <mvc:exclude-mapping path="/assets/**"/>
+      <mvc:exclude-mapping path="/css/**"/>
+      <mvc:exclude-mapping path="/js/**"/>
+      <bean class="notes.mvc.web.interceptor.ContextInterceptor"/>
+      <!-- 这样引用拦截器也可以
+      <bean ref="beanId"/>
+      -->
+    </mvc:interceptor>
+  </mvc:interceptors>
 
   <!-- 文件上传：前端页面如果是表单，则表单需要配置multipart/form-data -->
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -35,5 +50,20 @@
     <property name="maxUploadSize" value="400000000"/>
   </bean>
 
+  <!-- 如果有自定义参数绑定，需加上以下代码 -->
+  <mvc:annotation-driven conversion-service="conversionService"/>
+  <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <property name="converters">
+      <set>
+        <bean class="notes.mvc.web.converter.CustomDateConverter"/>
+        <!--
+        <bean class=".."/>
+        -->
+      </set>
+    </property>
+  </bean>
+
+  <!-- 自定义的全局异常处理器 只要实现HandlerExceptionResolver接口就是全局异常处理器，只能存在一个 -->
+  <bean class="notes.mvc.web.resolver.CustomExceptionResolver"/>
 
 </beans>
