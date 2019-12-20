@@ -34,6 +34,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     //应用场景：统一异常处理，统一日志处理
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
-
+        log.warn("LoginInterceptor.afterCompletion");
     }
 }

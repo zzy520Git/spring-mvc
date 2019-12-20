@@ -38,7 +38,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
                 writer = response.getWriter();
                 writer.print(JsonUtil.toJSONView(ResponseResult.errorCodeMsg(Code.CommonCode.Failure, "统一异常处理")));
             } catch (Exception e) {
-                log.error("CustomExceptionResolver: response.getWriter() error", e);
+                log.error("CustomExceptionResolver: response.getWriter error", e);
             } finally {
                 if(null != writer){
                     writer.close();
