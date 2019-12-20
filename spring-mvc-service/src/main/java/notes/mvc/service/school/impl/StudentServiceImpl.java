@@ -1,6 +1,7 @@
 package notes.mvc.service.school.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import notes.mvc.common.annotation.monitor.XMonitor;
 import notes.mvc.service.school.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class StudentServiceImpl implements StudentService {
     private TransactionTemplate transactionTemplate;
 
     @Override
+    @XMonitor
     public void doHomeWork() {
         log.warn("studentService开始写家庭作业");
     }

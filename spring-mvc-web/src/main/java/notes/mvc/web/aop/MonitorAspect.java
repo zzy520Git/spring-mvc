@@ -58,12 +58,13 @@ public class MonitorAspect {
         Method method = this.getMethod(jp);
         if (method != null) {
             XMonitor monitor = method.getAnnotation(XMonitor.class) ;
+            if (monitor != null) {
+                log.warn("XMonitor监控方法：{}.{}",
+                        jp.getTarget().getClass().getSimpleName(), jp.getSignature().getName());
+            }
         }
         return jp.proceed();
     }
-
-    //日志搜不出点.  不要输出umpKey到日志
-//    String umpKey = jp.getTarget().getClass().getName() + "." + jp.getSignature().getName();
 
 //    Class clazz = method.getReturnType();
 //            if(rethrow || (clazz != null && clazz.isPrimitive())) {

@@ -20,14 +20,14 @@ public class LoginInterceptor implements HandlerInterceptor {
     //比如身份认证，如果认证通过表示当前用户没有登陆，需要此方法拦截不再向下执行
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        log.info("LoginInterceptor.preHandle");
+        log.warn("LoginInterceptor.preHandle");
         return true;
     }
 
     //进入Handler方法之后，返回modelAndView之前执行
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mav) {
-        log.info("LoginInterceptor.postHandle");
+        log.warn("LoginInterceptor.postHandle");
     }
 
     //执行Handler完成执行此方法
