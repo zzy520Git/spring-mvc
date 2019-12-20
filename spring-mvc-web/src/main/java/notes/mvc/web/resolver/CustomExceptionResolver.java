@@ -1,7 +1,8 @@
 package notes.mvc.web.resolver;
 
 import lombok.extern.slf4j.Slf4j;
-import notes.mvc.common.ResponseResult;
+import notes.mvc.common.response.Code;
+import notes.mvc.common.response.ResponseResult;
 import notes.mvc.common.util.JsonUtil;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -35,7 +36,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
                 response.setContentType("application/json; charset=utf-8");
                 response.setCharacterEncoding("utf-8");
                 writer = response.getWriter();
-                writer.print(JsonUtil.toJSONString(new ResponseResult()));
+                writer.print(JsonUtil.toJSONView(ResponseResult.errorCodeMsg(Code.CommonCode.Failure, "统一异常处理")));
             } catch (Exception e) {
                 log.error("CustomExceptionResolver: response.getWriter() error", e);
             } finally {

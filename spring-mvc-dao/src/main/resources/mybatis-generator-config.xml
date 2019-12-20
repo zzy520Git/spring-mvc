@@ -33,7 +33,7 @@
       <property name="enableSubPackages" value="false"/>
     </javaClientGenerator>
 
-    <table tableName="Student" domainObjectName="Student" selectByExampleQueryId="false"
+    <table tableName="student" domainObjectName="Student" selectByExampleQueryId="false"
            enableCountByExample="false" enableDeleteByExample="false"
            enableSelectByExample="false" enableUpdateByExample="false">
       <columnOverride column="id" javaType="java.lang.Long"/>

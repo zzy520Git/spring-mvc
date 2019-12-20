@@ -1,6 +1,6 @@
 package notes.mvc.web.controller;
 
-import notes.mvc.common.ResponseResult;
+import notes.mvc.common.response.ResponseResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
