@@ -7,9 +7,9 @@
   </appender>
 
   <appender name="notes" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>/export/Logs/framework-ssm/notes.log</file>
+    <file>/export/Logs/spring-mvc/notes.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>/export/Logs/framework-ssm/notes.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <fileNamePattern>/export/Logs/spring-mvc/notes.log.%d{yyyy-MM-dd}</fileNamePattern>
       <maxHistory>7</maxHistory>
     </rollingPolicy>
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
