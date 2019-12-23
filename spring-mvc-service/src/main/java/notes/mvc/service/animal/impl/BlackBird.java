@@ -3,7 +3,7 @@ package notes.mvc.service.animal.impl;
 import lombok.extern.slf4j.Slf4j;
 import notes.mvc.service.animal.Fly;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * Description：
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @since
  */
 @Slf4j
-@Service("blackBird")
+@Component("blackBird")
 @Scope("prototype")
 public class BlackBird implements Fly {
     @Override

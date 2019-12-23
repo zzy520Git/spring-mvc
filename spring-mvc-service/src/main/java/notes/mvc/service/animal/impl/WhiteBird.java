@@ -2,7 +2,7 @@ package notes.mvc.service.animal.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import notes.mvc.service.animal.Fly;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * Description：
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @since
  */
 @Slf4j
-@Service("whiteBird")
+@Component("whiteBird")
 public class WhiteBird implements Fly {
     @Override
     public void fly() {

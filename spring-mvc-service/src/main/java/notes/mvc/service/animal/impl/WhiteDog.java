@@ -3,7 +3,7 @@ package notes.mvc.service.animal.impl;
 import lombok.extern.slf4j.Slf4j;
 import notes.mvc.service.animal.Fly;
 import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * Description：方法注入
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @since
  */
 @Slf4j
-@Service
+@Component
 public abstract class WhiteDog implements Fly {
 
     /**
