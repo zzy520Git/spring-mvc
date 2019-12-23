@@ -3,6 +3,9 @@ package notes.mvc.domain;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Description：
@@ -36,4 +39,8 @@ public class Student {
     private String password;
 
     private Date birthday;
+
+    private List<Object> schools;
+    private Map<String, Object> scores;
+    private Properties properties;
 }
