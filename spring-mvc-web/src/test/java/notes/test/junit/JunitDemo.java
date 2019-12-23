@@ -27,6 +27,9 @@ public class JunitDemo {
         Student jackMa = context.getBean("jackMa", Student.class);
         log.warn("jackMa={}", jackMa);
 
+        Student zhangsan = context.getBean("zhangsan", Student.class);
+        log.warn("zhangsan={}", zhangsan);
+
         Thread.sleep(1000);
     }
 }
