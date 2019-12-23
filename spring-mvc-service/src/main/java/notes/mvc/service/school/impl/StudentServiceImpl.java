@@ -3,7 +3,10 @@ package notes.mvc.service.school.impl;
 import lombok.extern.slf4j.Slf4j;
 import notes.mvc.common.annotation.monitor.XMonitor;
 import notes.mvc.service.school.StudentService;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -18,9 +21,14 @@ import org.springframework.transaction.support.TransactionTemplate;
  */
 @Slf4j
 @Service("studentService")
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl implements StudentService, ApplicationContextAware {
     @Autowired
     private TransactionTemplate transactionTemplate;
+
+    /**
+     * 获取spring容器
+     */
+    private ApplicationContext ctx;
 
     @Override
     @XMonitor
@@ -46,5 +54,10 @@ public class StudentServiceImpl implements StudentService {
     public void testTransaction() {
         //todo 数据库操作
 
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        ctx = applicationContext;
     }
 }

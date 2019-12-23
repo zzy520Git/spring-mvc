@@ -22,6 +22,7 @@ public class EmailListener implements ApplicationListener<EmailEvent> {
      */
     @Override
     public void onApplicationEvent(EmailEvent event) {
-        log.warn("发生了容器EmailEvent事件-source={}", event.getSource());
+        //处理线程和发布事件的线程是同一个，不是异步的哟
+        log.warn("线程={}消费了容器EmailEvent事件-source={}", Thread.currentThread().getName(), event.getSource());
     }
 }

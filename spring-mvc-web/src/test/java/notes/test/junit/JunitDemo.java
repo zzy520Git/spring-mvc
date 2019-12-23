@@ -22,7 +22,7 @@ public class JunitDemo {
         StudentService studentService = context.getBean(StudentService.class);
         studentService.doHomeWork();
 
-        EmailEvent emailEvent = new EmailEvent("test container event");
+        EmailEvent emailEvent = new EmailEvent("test container event" + Thread.currentThread().getName());
         context.publishEvent(emailEvent);
         Student jackMa = context.getBean("jackMa", Student.class);
         log.warn("jackMa={}", jackMa);
