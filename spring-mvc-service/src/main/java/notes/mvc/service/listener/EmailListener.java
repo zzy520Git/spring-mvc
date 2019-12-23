@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 public class EmailListener implements ApplicationListener<EmailEvent> {
     /**
      * spring发布EmailEvent事件能够监听到
+     * context.publishEvent(emailEvent);
      * @param event
      */
     @Override
