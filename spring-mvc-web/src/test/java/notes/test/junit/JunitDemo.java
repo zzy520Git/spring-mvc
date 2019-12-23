@@ -35,6 +35,9 @@ public class JunitDemo {
         Fly fly2 = context.getBean("blackBird", Fly.class);
         log.warn("fly1 == fly2:" + (fly1 == fly2));
 
+        Object lisi = context.getBean("lisi");
+        log.warn("lisi.class={},lisi={}", lisi.getClass().getSimpleName(), lisi);
+
         Thread.sleep(1000);
     }
 }

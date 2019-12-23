@@ -31,6 +31,9 @@
     </property>
   </bean>
 
+  <!--FactoryBean-->
+  <bean id="lisi" class="notes.mvc.service.factory.StudentFactoryBean"/>
+
 
 
 </beans>
