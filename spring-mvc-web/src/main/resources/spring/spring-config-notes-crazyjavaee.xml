@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/aop/spring-mvc.xsd">
+
+  <bean id="jackMa" class="notes.mvc.domain.Student">
+    <!-- index代表第几个参数；type代表形参类型；name代表形参名；value或ref代表值 -->
+    <constructor-arg index="0" type="long" name="id" value="666"/>
+    <constructor-arg index="1" type="java.lang.Integer" name="age" value="18"/>
+    <constructor-arg index="2" type="java.lang.String" name="name" value="马老师"/>
+  </bean>
+
+
+
+</beans>
+
+<!--
+1.此文件用于记录笔记，配置内容可能会有错误，请勿将其加入到spring上下文
+2.
+3.
+-->

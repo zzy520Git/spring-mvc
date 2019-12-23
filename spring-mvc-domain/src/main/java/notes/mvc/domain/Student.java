@@ -14,7 +14,22 @@ import java.util.Date;
  */
 @Data
 public class Student {
-    private Long id;
+
+
+    public Student() {
+
+    }
+    /**
+     * 测试spring构造注入
+     */
+    public Student(long id, Integer age, String name) {
+        this.id = id;
+        this.age = age;
+        this.name = name;
+    }
+
+
+    private long id;
     private Integer age;
     private String name;
     private String username;

@@ -35,6 +35,8 @@
   <import resource="spring-config-dao.xml"/>
   <import resource="spring-config-dispatcher.xml"/>
 
+  <import resource="spring-config-notes-crazyjavaee.xml"/>
+
   <!--
   <import resource="spring-config-template.xml"/>
   <import resource="spring-config-notes.xml"/>
