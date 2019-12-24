@@ -5,6 +5,7 @@ import notes.mvc.common.annotation.monitor.XMonitor;
 import notes.mvc.common.response.Code;
 import notes.mvc.common.response.ResponseResult;
 import notes.mvc.service.aop.CglibAopService;
+import notes.mvc.service.aop.JdkAopService;
 import notes.mvc.service.school.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class IndexController {
     private StudentService studentService;
     @Autowired
     private CglibAopService cglibAopService;
+    @Autowired
+    private JdkAopService jdkAopService;
 
     @ResponseBody
     @RequestMapping("/index")
@@ -50,6 +53,15 @@ public class IndexController {
         cglibAopService.after();
         String name = cglibAopService.around("zzy520git");
         log.warn("realname={}", name);
+        return ResponseResult.successResult(Code.CommonCode.SUCCESS);
+    }
+
+    @ResponseBody
+    @RequestMapping("/aopjdk")
+    public ResponseResult aopjdk() {
+        log.warn("-------aopjdk-begin");
+        jdkAopService.doAop("zzy520git");
+        log.warn("-------aopjdk-end");
         return ResponseResult.successResult(Code.CommonCode.SUCCESS);
     }
 }

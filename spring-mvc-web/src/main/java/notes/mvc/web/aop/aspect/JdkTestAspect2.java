@@ -21,24 +21,17 @@ import org.springframework.core.annotation.Order;
  */
 @Slf4j
 @Aspect
-@Order(Ordered.HIGHEST_PRECEDENCE)
-public class JdkTestAspect1 {
-    /**
-     * 定义切入点格式：(无入参无返回值的空方法)
-     * 修饰符 void 切入点名称() {}
-     */
-    @Pointcut("execution(* notes.mvc.service.aop.impl.JdkAopServiceImpl.doAop(..))")
-    public void jdkAopPoint() {
-    }
+@Order(Ordered.LOWEST_PRECEDENCE)   //使用默认值更常用
+public class JdkTestAspect2 {
 
     /**
      * before增强无法访问方法的入参和返回值
      * jp只能是第一个参数，除了around增强，jp只能访问方法或代理对象的一些信息
      */
-    @Before("jdkAopPoint()")
+    @Before("JdkTestAspect1.jdkAopPoint()")
     public void beforeAdvice(JoinPoint jp) {
         //只获取方法名
-        log.info("beforeAdvice1，method={}", jp.getSignature().getName());
+        log.info("beforeAdvice2，method={}", jp.getSignature().getName());
     }
 
     /**
@@ -47,9 +40,9 @@ public class JdkTestAspect1 {
      * returning属性定义的形参类型，还能限制切入点的返回值类型，返回值不符合的不会切入
      * todo:只有切入点不抛异常，即成功执行并返回，才能织入
      */
-    @AfterReturning(pointcut = "jdkAopPoint()", returning = "rvt")
+    @AfterReturning(pointcut = "JdkTestAspect1.jdkAopPoint()", returning = "rvt")
     public void afterReturningAdvice(JoinPoint jp, Integer rvt) {
-        log.info("afterReturningAdvice1，rvt={}", rvt);
+        log.info("afterReturningAdvice2，rvt={}", rvt);
         rvt = 100;
     }
 
@@ -59,7 +52,7 @@ public class JdkTestAspect1 {
      * throwing属性定义的形参类型，还能限制切入点的抛出的异常类型，异常不符合的不会切入
      * todo:此时不会切入抛空指针异常的方法
      */
-    @AfterThrowing(pointcut = "jdkAopPoint()", throwing = "ex")
+    @AfterThrowing(pointcut = "JdkTestAspect1.jdkAopPoint()", throwing = "ex")
     public void afterThrowingAdvice(IllegalArgumentException ex) {
         log.info("afterThrowingAdvice", ex);
     }
@@ -68,10 +61,10 @@ public class JdkTestAspect1 {
      * After增强
      * todo:无论切入点抛异常还是成功执行并返回，都能织入
      */
-    @After("jdkAopPoint()")
+    @After("JdkTestAspect1.jdkAopPoint()")
     public void afterAdvice(JoinPoint jp) {
         //
-        log.info("afterAdvice1，target.class=【{}】, this.class=【{}】", jp.getTarget().getClass().getSimpleName(),
+        log.info("afterAdvice2，target.class=【{}】, this.class=【{}】", jp.getTarget().getClass().getSimpleName(),
                 jp.getThis().getClass().getName());
     }
 
@@ -83,11 +76,11 @@ public class JdkTestAspect1 {
      * Object jp.getTarget()：返回目标对象
      * Object jp.getThis()：返回目标对象的代理对象
      */
-    @Around("jdkAopPoint()")
+    @Around("JdkTestAspect1.jdkAopPoint()")
     public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
-        log.info("aroundAdvice1.start");
+        log.info("aroundAdvice2.start");
         Object rvt = pjp.proceed();
-        log.info("aroundAdvice1.end");
+        log.info("aroundAdvice2.end");
         if (rvt != null && rvt instanceof String) {
             rvt += " 加入around增强处理";
         }
