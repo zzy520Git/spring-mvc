@@ -64,4 +64,11 @@ public class IndexController {
         log.warn("-------aopjdk-end");
         return ResponseResult.successResult(Code.CommonCode.SUCCESS);
     }
+
+    @ResponseBody
+    @RequestMapping("/point")
+    public ResponseResult point() {
+        jdkAopService.doPointCut("zzy520git");
+        return ResponseResult.successResult(Code.CommonCode.SUCCESS);
+    }
 }
