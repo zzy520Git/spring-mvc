@@ -13,8 +13,8 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/aop/spring-mvc.xsd">
 
-  <!-- 也可以读取配置文件 -->
-  <context:property-placeholder location="classpath:conf/*.properties"/>
+  <!-- 也可以读取配置文件 classpath*:用法-->
+  <context:property-placeholder location="classpath*:conf/*.properties"/>
 
   <!-- 请求默认域名，默认跳转url(view-name也可直接为视图名，如"func/jsonForm") -->
   <!-- 注意，该配置生效必须webapp根目录没有index.html或index.jsp等 -->
