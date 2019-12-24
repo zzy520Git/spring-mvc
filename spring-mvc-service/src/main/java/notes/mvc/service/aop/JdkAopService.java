@@ -10,4 +10,6 @@ package notes.mvc.service.aop;
  */
 public interface JdkAopService {
     Integer doAop(String name);
+
+    String doPointCut(String alias);
 }

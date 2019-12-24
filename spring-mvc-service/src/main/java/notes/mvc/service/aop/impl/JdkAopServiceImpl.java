@@ -38,4 +38,16 @@ public class JdkAopServiceImpl implements JdkAopService {
         log.warn("JdkAopServiceImpl.doAop()开始执行name={}", name);
         return 18;
     }
+
+    /**
+     * 测试切点
+     *
+     * @param alias
+     * @return
+     */
+    @Override
+    public String doPointCut(String alias) {
+        log.warn("JdkAopServiceImpl.doPointCut()开始执行alias={}", alias);
+        return "money";
+    }
 }
