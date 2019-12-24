@@ -7,9 +7,12 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
+
+import javax.sql.DataSource;
 
 /**
  * Description：
@@ -52,8 +55,11 @@ public class StudentServiceImpl implements StudentService, ApplicationContextAwa
 
     @Transactional(rollbackFor = Exception.class)
     public void testTransaction() {
-        //todo 数据库操作
-
+        DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        //todo 注意sql不要加分号
+        int count = jdbcTemplate.update("update student set name=? where id=?", "张三", 666);
+        log.warn("JdbcTemplate操作数据库count={}", count);
     }
 
     @Override
