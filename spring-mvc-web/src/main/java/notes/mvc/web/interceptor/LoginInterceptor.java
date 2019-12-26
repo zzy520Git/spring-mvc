@@ -20,13 +20,14 @@ public class LoginInterceptor implements HandlerInterceptor {
     //比如身份认证，如果认证通过表示当前用户没有登陆，需要此方法拦截不再向下执行
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        log.warn("LoginInterceptor.preHandle");
+        log.warn("LoginInterceptor.preHandle uri={}", request.getRequestURI());
         return true;
     }
 
     //进入Handler方法之后，返回modelAndView之前执行
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mav) {
+        //如果controller抛异常，不会进入此方法（无论是否配置统一异常处理）
         log.warn("LoginInterceptor.postHandle");
     }
 
@@ -34,6 +35,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     //应用场景：统一异常处理，统一日志处理
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
-        log.warn("LoginInterceptor.afterCompletion");
+        //即使controller抛异常，也会进入此方法
+        log.warn("LoginInterceptor.afterCompletion", e);
     }
 }
