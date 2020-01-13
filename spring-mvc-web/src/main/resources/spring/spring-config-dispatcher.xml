@@ -12,7 +12,13 @@
     1.默认加载JSON转换器
     2.默认加载处理器映射器和处理器适配器
   -->
-  <mvc:annotation-driven/>
+  <mvc:annotation-driven>
+    <mvc:message-converters register-defaults="true">
+      <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+        <constructor-arg value="UTF-8"/>
+      </bean>
+    </mvc:message-converters>
+  </mvc:annotation-driven>
 
   <!-- 用于支持访问静态资源，因为dispatcher的url映射配置的"/" -->
   <mvc:default-servlet-handler/>
