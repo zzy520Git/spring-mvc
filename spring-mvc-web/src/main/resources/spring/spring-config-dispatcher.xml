@@ -11,8 +11,9 @@
     该注解驱动的作用：
     1.默认加载JSON转换器
     2.默认加载处理器映射器和处理器适配器
+    3.参数绑定器
   -->
-  <mvc:annotation-driven>
+  <mvc:annotation-driven conversion-service="conversionService">
     <mvc:message-converters register-defaults="true">
       <bean class="org.springframework.http.converter.StringHttpMessageConverter">
         <constructor-arg value="UTF-8"/>
@@ -57,7 +58,6 @@
   </bean>
 
   <!-- 如果有自定义参数绑定，需加上以下代码 -->
-  <mvc:annotation-driven conversion-service="conversionService"/>
   <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
     <property name="converters">
       <set>
