@@ -42,6 +42,10 @@
 
   <import resource="spring-config-notes-crazyjavaee.xml"/>
 
+  <bean id="periodBean" class="notes.mvc.domain.PeriodBean" init-method="init" destroy-method="dest">
+    <property name="age" value="18"/>
+  </bean>
+
   <!--
   <import resource="spring-config-template.xml"/>
   <import resource="spring-config-notes.xml"/>
